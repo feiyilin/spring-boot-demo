@@ -2,3 +2,20 @@ server:
   port: 8080
   servlet:
     context-path: /demo
+
+run:
+  base:
+    # 客户端数据同步账号
+    sync_uid: admin
+    # 客户端同步密码 RSA 加密
+    sync_pwd: admin
+    # 客户端公钥
+    rsa_public_key: MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQCIPunXJUN2hZmm+i2+nmaX8Bw+gyyHav2x1o2x9jJUuj2i4Do/TarbLk3NvExKG/fZ4HUkQB9RYWZn+w/smVIN6xQU52/HQ+LzMZQXO9yMeviMolaohzzi5dy+Oa32yJcbQ2wfIVtLToQcHs7I5iaNU3+YsTEknaETne5uyU3QJQIDAQAB
+    # 运维协作平台消息服务地址
+    mq_server: 47.104.207.150:9876
+    # 运维协作平台后台地址
+    url: 106.55.44.142:9704
+    # 系统在运维平台中订阅的主题ID
+    topic:
+        - TOPIC_SYSTEM_TODO@@SYSTEM_HW_QZQ_TEST
+    mq_instance_name: TEST_3
