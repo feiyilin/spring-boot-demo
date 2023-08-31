@@ -2,6 +2,7 @@ package com.xkcoding.mq.kafka;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 
 /**
  * <p>
@@ -12,6 +13,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
  * @date Created in 2019-01-07 14:43
  */
 @SpringBootApplication
+@EnableDiscoveryClient
 public class SpringBootDemoMqKafkaApplication {
 
     public static void main(String[] args) {
