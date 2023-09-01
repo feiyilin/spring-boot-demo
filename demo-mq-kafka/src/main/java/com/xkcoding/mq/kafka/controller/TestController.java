@@ -29,6 +29,6 @@ public class TestController {
                 .retrieve()
                 .bodyToMono(String.class)
                 .block();
-        return "feiyilinDemo  ---------- " + result;
+        return "feiyilinDemo ---------- " + result;
     }
 }
