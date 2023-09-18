@@ -1,5 +1,6 @@
 package com.xkcoding.mq.kafka.controller;
 
+import com.xkcoding.mq.kafka.api.TestFeignInterface;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -19,6 +20,9 @@ public class TestController {
     @Autowired
     private WebClient.Builder webClient;
 
+    @Autowired
+    private TestFeignInterface testFeignInterface;
+
     @GetMapping("/testWebClient")
     public String testWebClient(String name) {
 
@@ -30,5 +34,11 @@ public class TestController {
                 .bodyToMono(String.class)
                 .block();
         return "feiyilinDemo ---------- " + result;
+    }
+
+    @GetMapping("/testFeign")
+    public String testFeign() {
+
+        return "端口号：" + testFeignInterface.getAgeByName();
     }
 }

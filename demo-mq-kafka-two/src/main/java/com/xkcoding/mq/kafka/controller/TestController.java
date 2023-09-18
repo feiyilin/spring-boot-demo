@@ -1,5 +1,6 @@
 package com.xkcoding.mq.kafka.controller;
 
+import com.xkcoding.mq.kafka.api.TestFeignInterface;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -12,16 +13,11 @@ import org.springframework.web.bind.annotation.RestController;
  */
 @RestController
 @RequestMapping("/testController")
-public class TestController {
-
+public class TestController implements TestFeignInterface {
+    @Override
     @GetMapping("/getAgeByName")
-    public String getAgeByName(String name) {
-        if ("小明".equals(name)) {
-            return "feiyilinDemo2 + 18";
-        }
-        if ("小红".equals(name)) {
-            return "feiyilinDemo2 + 20";
-        }
-        return "feiyilinDemo2 + 0";
+    public String getAgeByName() {
+        // 获取端口号
+        return System.getProperty("server.port");
     }
 }
