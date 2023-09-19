@@ -39,6 +39,8 @@ public class TestController {
     @GetMapping("/testFeign")
     public String testFeign() {
 
-        return "端口号：" + testFeignInterface.getAgeByName();
+        String result = testFeignInterface.getAgeByName();
+        System.out.println("端口号：" + result);
+        return "端口号：" + result;
     }
 }

@@ -1,8 +1,11 @@
 package com.xkcoding.mq.kafka;
 
+import com.xkcoding.mq.kafka.config.LoadBalancerRandomConfiguration;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
+import org.springframework.cloud.loadbalancer.annotation.LoadBalancerClient;
+import org.springframework.cloud.loadbalancer.annotation.LoadBalancerClients;
 import org.springframework.cloud.openfeign.EnableFeignClients;
 
 /**
@@ -16,6 +19,9 @@ import org.springframework.cloud.openfeign.EnableFeignClients;
 @SpringBootApplication
 @EnableDiscoveryClient
 @EnableFeignClients(basePackages = "com.xkcoding.mq.kafka.api")
+@LoadBalancerClients({
+        @LoadBalancerClient(name = "feiyilinDemo2", configuration = LoadBalancerRandomConfiguration.class)
+})
 public class SpringBootDemoMqKafkaApplication {
 
     public static void main(String[] args) {

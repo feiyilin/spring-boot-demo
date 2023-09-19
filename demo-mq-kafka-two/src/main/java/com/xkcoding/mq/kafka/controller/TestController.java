@@ -1,6 +1,7 @@
 package com.xkcoding.mq.kafka.controller;
 
 import com.xkcoding.mq.kafka.api.TestFeignInterface;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -14,10 +15,13 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/testController")
 public class TestController implements TestFeignInterface {
+
+    @Value("${server.port}")
+    private String serverPort;
     @Override
     @GetMapping("/getAgeByName")
     public String getAgeByName() {
         // 获取端口号
-        return System.getProperty("server.port");
+        return serverPort;
     }
 }
