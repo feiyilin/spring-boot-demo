@@ -19,8 +19,8 @@ public class HttpPostDemo {
         // 替换成你的实际参数值
         String appId = "1500007738";
         String secret = "tzl3V04ZdZdwzzDGOQmsTREHpALsiAAp";
-        long timestamp = 1646921760; // 当前时间戳
-
+        // 当前时间戳
+        long timestamp = System.currentTimeMillis() / 1000;
         // 创建参数映射
         Map<String, String> params = new HashMap<>();
         params.put("appID", appId);
@@ -39,15 +39,15 @@ public class HttpPostDemo {
 
         // 计算 MD5 摘要
         // md5加密
-        String signature = DigestUtils.md5DigestAsHex(signatureBase.toString().getBytes());
+        String md5Sign = DigestUtils.md5DigestAsHex(signatureBase.toString().getBytes());
 
         // 使用 Base64 进行编码
-        String base64Signature = Base64.encodeBase64URLSafeString(signature.getBytes());
+        String base64Sign = Base64.encodeBase64URLSafeString(md5Sign.getBytes());
 
         Map<String, String> map = new HashMap<>();
-        map.put("startTime", "2023-08-10 13:10:00");
+        map.put("startTime", "2023-09-01 13:10:00");
         map.put("endTime", "2023-09-11 13:00:00");
-        String body = HttpRequest.post("https://202.96.164.143:10443/car/open/lg-dbk/car/roadSegmentList?appID=1500007738&timestamp=1695027425&sign=ODYxYzJjMzMxN2MxOTRiYmFjZDllM2ZmMmZhNmE5ZWU")
+        String body = HttpRequest.post("https://202.96.164.143:10443/car/open/lg-dbk/car/roadSegmentList?appID=" + appId + "&timestamp="+timestamp + "&sign=" + base64Sign)
                 .header("Content-Type", "application/json")
                 .body(JSON.toJSONString(map))
                 .execute().body();
