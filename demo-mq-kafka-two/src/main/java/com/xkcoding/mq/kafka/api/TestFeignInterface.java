@@ -12,6 +12,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 @FeignClient(name = "feiyilinDemo2", path = "/demo2/testController")
 public interface TestFeignInterface {
 
-    @GetMapping("/getAgeByName")
-    String getAgeByName();
+    @GetMapping("/getServerPort")
+    String getServerPort();
 }

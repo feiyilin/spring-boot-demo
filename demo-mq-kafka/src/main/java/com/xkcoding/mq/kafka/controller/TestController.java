@@ -29,7 +29,7 @@ public class TestController {
         String result = webClient
                 .build()
                 .get()
-                .uri("http://feiyilinDemo2/demo2/testController/getAgeByName?name=" + name)
+                .uri("http://feiyilinDemo2/demo2/testController/getServerPort?name=" + name)
                 .retrieve()
                 .bodyToMono(String.class)
                 .block();
@@ -39,7 +39,7 @@ public class TestController {
     @GetMapping("/testFeign")
     public String testFeign() {
 
-        String result = testFeignInterface.getAgeByName();
+        String result = testFeignInterface.getServerPort();
         System.out.println("端口号：" + result);
         return "端口号：" + result;
     }

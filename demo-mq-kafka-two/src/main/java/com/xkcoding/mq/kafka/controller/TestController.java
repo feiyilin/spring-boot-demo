@@ -18,9 +18,10 @@ public class TestController implements TestFeignInterface {
 
     @Value("${server.port}")
     private String serverPort;
+
     @Override
-    @GetMapping("/getAgeByName")
-    public String getAgeByName() {
+    @GetMapping("/getServerPort")
+    public String getServerPort() {
         // 获取端口号
         return serverPort;
     }
