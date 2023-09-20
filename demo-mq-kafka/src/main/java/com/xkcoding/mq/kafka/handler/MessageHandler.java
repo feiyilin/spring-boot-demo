@@ -5,7 +5,6 @@ import lombok.extern.slf4j.Slf4j;
 import org.apache.kafka.clients.consumer.ConsumerRecord;
 import org.springframework.kafka.annotation.KafkaListener;
 import org.springframework.kafka.support.Acknowledgment;
-import org.springframework.stereotype.Component;
 
 /**
  * <p>
@@ -15,7 +14,7 @@ import org.springframework.stereotype.Component;
  * @author yangkai.shen
  * @date Created in 2019-01-07 14:58
  */
-@Component
+//@Component
 @Slf4j
 public class MessageHandler {
 
