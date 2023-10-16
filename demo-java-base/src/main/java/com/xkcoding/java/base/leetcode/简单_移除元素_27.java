@@ -47,7 +47,7 @@ for (int i = 0; i < len; i++) {
 0 <= nums[i] <= 50
 0 <= val <= 100
  */
-public class 移除元素_27 {
+public class 简单_移除元素_27 {
     public static void main(String[] args) {
         int[] nums = {3,2,2,3};
         int val = 3;

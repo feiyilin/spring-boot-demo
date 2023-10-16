@@ -42,7 +42,7 @@ for (int i = 0; i < k; i++) {
 -104 <= nums[i] <= 104
 nums 已按 非严格递增 排列
  */
-public class 删除有序数组中的重复项_26 {
+public class 简单_删除有序数组中的重复项_26 {
 
     public static void main(String[] args) {
 

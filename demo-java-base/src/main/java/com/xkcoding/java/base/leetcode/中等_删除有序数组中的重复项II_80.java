@@ -42,7 +42,7 @@ for (int i = 0; i < len; i++) {
 -104 <= nums[i] <= 104
 nums 已按升序排列
  */
-public class 删除有序数组中的重复项II_80 {
+public class 中等_删除有序数组中的重复项II_80 {
 
     public static void main(String[] args) {
         int[] nums = {1,1,1,2,2,3};

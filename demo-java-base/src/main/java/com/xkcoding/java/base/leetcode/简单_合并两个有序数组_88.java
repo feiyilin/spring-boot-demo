@@ -28,7 +28,7 @@ nums2.length == n
 -109 <= nums1[i], nums2[j] <= 109
 进阶：你可以设计实现一个时间复杂度为 O(m + n) 的算法解决此问题吗？
  */
-public class 合并两个有序数组_88 {
+public class 简单_合并两个有序数组_88 {
 
     public static void main(String[] args) {
 
