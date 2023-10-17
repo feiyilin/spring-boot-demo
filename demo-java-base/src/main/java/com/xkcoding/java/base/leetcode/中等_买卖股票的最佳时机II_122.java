@@ -38,13 +38,17 @@ package com.xkcoding.java.base.leetcode;
 public class 中等_买卖股票的最佳时机II_122 {
 
     public static void main(String[] args) {
-
+        maxProfit(new int[]{7,6,4,3,1});
     }
 
-    public int maxProfit(int[] prices) {
+    public static int maxProfit(int[] prices) {
 
         // stock和cash两个状态，维护两个状态
         // stock表示当前持股时最大的利润，cash表示当前不持股时最大的利润
+        // 每天（i）结束只有两个状态：持股和不持股，决定每一天的状态是那个就能决定最大值，每天的最大利润考虑之前的天，具有前缀性 两个状态的算法是相互依赖的
+        // 每天持股状态（前缀性）的最大利润：1、前一天的持股最大利润 2、前一天不持股最大利润 - 当天股价
+        // 每天不持股状态（前缀性）的最大利润：1、前一天的不持股最大利润 2、前一天持股最大利润 + 当天股价
+        // 最后一天的不持股状态肯定大于最后一天的持股状态
         int n = prices.length;
         int[] stock = new int[n];
         int[] cash = new int[n];
