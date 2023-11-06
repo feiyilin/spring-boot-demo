@@ -76,6 +76,7 @@
         <module>demo-pay</module>
         <module>demo-java-base</module>
         <module>demo-mq-kafka-two</module>
+        <module>demo-mq-kafka-base</module>
     </modules>
     <packaging>pom</packaging>
 
