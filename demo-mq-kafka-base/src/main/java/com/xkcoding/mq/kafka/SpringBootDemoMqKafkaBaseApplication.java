@@ -12,10 +12,10 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
  * @date Created in 2019-01-07 14:43
  */
 @SpringBootApplication
-public class SpringBootDemoMqKafkaApplication {
+public class SpringBootDemoMqKafkaBaseApplication {
 
     public static void main(String[] args) {
-        SpringApplication.run(SpringBootDemoMqKafkaApplication.class, args);
+        SpringApplication.run(SpringBootDemoMqKafkaBaseApplication.class, args);
     }
 
 }
