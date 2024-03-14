@@ -22,7 +22,10 @@ public class JavaBaseDemoApplication {
     }
 
     @RequestMapping(value="/get",method= RequestMethod.GET)
-    public String get(){
+    public String get() throws InterruptedException {
+        System.out.println("hello world");
+        System.out.println(Thread.currentThread().getId());
+        Thread.sleep(10000);
         return "hello world";
     }
 }

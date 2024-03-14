@@ -1,7 +1,5 @@
 package com.xkcoding.java.base.generics.demo2024;
 
-import sun.misc.Unsafe;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -27,7 +25,6 @@ public class GenericsDemoTest {
         apple.test();
         Class<?> appleClass = Apple.class;
 
-        Unsafe.
     }
 
     public static void print(List<?> fruits) {
