@@ -1,0 +1,186 @@
+spring:
+  shardingsphere:
+    datasource:
+      names: master0,master1,master2,slave0,slave1,slave2
+      master0:
+        type: com.alibaba.druid.pool.DruidDataSource
+        driver-class-name: com.mysql.cj.jdbc.Driver
+        url: jdbc:mysql://gz-cdb-11xlze7h.sql.tencentcdb.com:58211/dustbin?useUnicode=true&characterEncoding=utf8&allowMultiQueries=true&useSSL=false
+        username: root
+        password: x8k4dS4v3#pec7a72mcv
+      master1:
+        type: com.alibaba.druid.pool.DruidDataSource
+        driver-class-name: com.mysql.cj.jdbc.Driver
+        url: jdbc:mysql://gz-cdb-11xlze7h.sql.tencentcdb.com:58211/dustbin?useUnicode=true&characterEncoding=utf8&allowMultiQueries=true&useSSL=false
+        username: root
+        password: x8k4dS4v3#pec7a72mcv
+      master2:
+        type: com.alibaba.druid.pool.DruidDataSource
+        driver-class-name: com.mysql.cj.jdbc.Driver
+        url: jdbc:mysql://gz-cdb-11xlze7h.sql.tencentcdb.com:58211/dustbin_master2?useUnicode=true&characterEncoding=utf8&allowMultiQueries=true&useSSL=false
+        username: root
+        password: x8k4dS4v3#pec7a72mcv
+      slave0:
+        type: com.alibaba.druid.pool.DruidDataSource
+        driver-class-name: com.mysql.cj.jdbc.Driver
+        url: jdbc:mysql://gz-cdbrg-e7wgb1aj.sql.tencentcdb.com:57104/dustbin?useUnicode=true&characterEncoding=utf8&allowMultiQueries=true&useSSL=false
+        username: root
+        password: x8k4dS4v3#pec7a72mcv
+      slave1:
+        type: com.alibaba.druid.pool.DruidDataSource
+        driver-class-name: com.mysql.cj.jdbc.Driver
+        url: jdbc:mysql://gz-cdbrg-e7wgb1aj.sql.tencentcdb.com:57104/dustbin?useUnicode=true&characterEncoding=utf8&allowMultiQueries=true&useSSL=false
+        username: root
+        password: x8k4dS4v3#pec7a72mcv
+      slave2:
+        type: com.alibaba.druid.pool.DruidDataSource
+        driver-class-name: com.mysql.cj.jdbc.Driver
+        url: jdbc:mysql://gz-cdbrg-e7wgb1aj.sql.tencentcdb.com:57104/dustbin_master2?useUnicode=true&characterEncoding=utf8&allowMultiQueries=true&useSSL=false
+        username: root
+        password: x8k4dS4v3#pec7a72mcv
+    props:
+      sql:
+        show: true
+    sharding:
+      default-data-source-name: master0
+      tables:
+        test_user:
+          # test_user_0101
+          actual-data-nodes: master${1..2}.test_user_${['0101','0102','0201','0202']}
+          database-strategy:
+            standard:
+              precise-algorithm-class-name: com.runjiang.common.framework.web.sharding.RunjiangDistrictDatabaseAlgorithm
+              sharding-column: district_id
+          table-strategy:
+            standard:
+              precise-algorithm-class-name: com.runjiang.common.framework.web.sharding.RunjiangRoadPreciseAlgorithm
+              sharding-column: road_id
+      master-slave-rules:
+        master0:
+          master-data-source-name: master0
+          slave-data-source-names: slave0
+        master1:
+          master-data-source-name: master1
+          slave-data-source-names: slave1
+        master2:
+          master-data-source-name: master2
+          slave-data-source-names: slave2
+  main:
+    allow-bean-definition-overriding: true
+  servlet:
+    multipart:
+      #单个文件上传发大小
+      max-file-size: 10MB
+      #多个文件上传的共大小不得超过100M
+      max-request-size: 100MB
+  cloud:
+    loadbalancer:
+      ribbon:
+        enabled: false
+  jackson:
+    date-format: "yyyy-MM-dd HH:mm:ss"
+runjiang:
+  shardingsphere:
+    enabled: true
+    database-strategy:
+      - city-id: 1422091712783712306 # 深圳市
+        district-id: 1422092382672781317 # 福田区
+        datasource: master1
+      - city-id: 1422091712783712306 # 深圳市
+        district-id: 1422092773955207192 # 龙岗区
+        datasource: master2
+    table-strategy:
+      district:
+        - city-id: 1422091712783712306 # 深圳市
+          district-id: 1422092382672781317 # 福田区
+          table-name-suffix: "01"
+        - city-id: 1422091712783712306 # 深圳市
+          district-id: 1422092773955207192 # 龙岗区
+          datasource: "02"
+      road:
+        - city-id: 1422091712783712306 # 深圳市
+          district-id: 1422092382672781317 # 福田区
+          road-id: 1422093308968042540 # 南园街道
+          table-name-suffix: "0101"
+        - city-id: 1422091712783712306 # 深圳市
+          district-id: 1422092382672781317 # 福田区
+          road-id: 1422093389884555264 # 华强北街道
+          table-name-suffix: "0102"
+        - city-id: 1422091712783712306 # 深圳市
+          district-id: 1422092773955207192 # 龙岗区
+          road-id: 1422094912140083215 # 横岗街道
+          table-name-suffix: "0201"
+        - city-id: 1422091712783712306 # 深圳市
+          district-id: 1422092773955207192 # 龙岗区
+          road-id: 1435558614889660428 # 坂田街道
+          table-name-suffix: "0202"
+  common:
+    redis:
+      enabled: true
+    idgenerator:
+      enabled: true
+      data-center-id: 0
+  csrf:
+    same-site: true
+mybatis-plus:
+  configuration:
+    map-underscore-to-camel-case: true
+    auto-mapping-behavior: full
+  global-config:
+    db-config: # 逻辑删除配置
+      logic-delete-field: is_deleted
+      logic-not-delete-value: 0 # 删除前
+      logic-delete-value: 1 # 删除后
+      column-underline: true
+      id-type: INPUT
+
+feign:
+  okhttp:
+    enabled: true
+  httpclient:
+    enabled: false
+  hystrix:
+    enabled: true
+  client:
+    config:
+      default:
+        connectTimeout: 2000
+        readTimeout: 2000
+
+ribbon:
+  ReadTimeout: 30000
+  ConnectTimeout: 30000
+
+hystrix:
+  shareSecurityContext: true
+  command:
+    default:
+      circuitBreaker:
+        sleepWindowInMilliseconds: 100000
+        forceClosed: true
+      execution:
+        timeout:
+          enabled: true
+        isolation:
+          thread:
+            timeoutInMilliseconds: 30000
+
+management:
+  health:
+    redis:
+      enabled: false
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+
+logging:
+  config:
+    classpath: logback-spring.xml
+camel:
+  component:
+    coap:
+      enabled: true
+      autowired-enabled: true
+kafka:
+  groupId: zyh-group

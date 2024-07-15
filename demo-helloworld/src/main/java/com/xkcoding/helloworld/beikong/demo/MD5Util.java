@@ -11,7 +11,7 @@ import java.util.stream.Collectors;
 
 public class MD5Util {
     public static void main(String[] args) {
-        String sign = genSign("appID=1500007770&timestamp=1713860317", "gKjQh8izzVFqcr19Hpxy6jaOoXKGkaE2");
+        String sign = genSign("appID=1500007776&timestamp=1720001038", "xBrP1OOcyW7U7QsTLonc34R19sutyurN");
         System.out.println(sign);
     }
     private MD5Util() {
